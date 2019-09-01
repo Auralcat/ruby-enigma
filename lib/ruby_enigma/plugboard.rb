@@ -8,6 +8,7 @@ module RubyEnigma
 
     def initialize
       @table = ('a'..'z').zip('ekmflgdqvzntowyhxuspaibrcj'.split('')).to_h
+      @mirror_table = 'ekmflgdqvzntowyhxuspaibrcj'.split('').zip(('a'..'z')).to_h
     end
   end
 end

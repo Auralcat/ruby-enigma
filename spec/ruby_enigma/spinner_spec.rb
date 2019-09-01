@@ -1,4 +1,4 @@
-require "spec_helper"
+require 'spec_helper'
 require 'ruby_enigma/spinner'
 
 RSpec.describe RubyEnigma::Spinner do
@@ -17,15 +17,28 @@ RSpec.describe RubyEnigma::Spinner do
   end
 
   it 'spins the first rotor when a letter is typed' do
-    wiring_ii = 'ajdksiruxblhwtmcqgznpyfvoe'
     spinner.translate('a')
 
-    expect(spinner.first_rotor.target_table).to eq(wiring_ii.split('').rotate)
+    expect(spinner.first_rotor.rotated_once?).to eq(true)
   end
 
-  xit 'spins the second rotor when the first one has completed a full turn' do
+  it 'spins the second rotor when the first one has completed a full turn' do
+    26.times { spinner.translate('a') }
+
+    expect(spinner.second_rotor.rotated_once?).to eq(true)
   end
 
-  xit 'spins the third rotor when the second one has completed a full turn' do
+  it 'spins the third rotor when the second one has completed a full turn' do
+    677.times { spinner.translate('a') }
+
+    expect(spinner.third_rotor.rotated_once?).to eq(true)
+  end
+
+  it 'scrambles the letter through all rotors inside' do
+    expect(spinner.translate('a')).to eq('s')
+  end
+
+  it 'directs the bounced signal correctly through the rotors' do
+    expect(spinner.mirror_translate('s')).to eq('a')
   end
 end

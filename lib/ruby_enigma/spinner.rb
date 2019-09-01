@@ -12,8 +12,36 @@ module RubyEnigma
     end
 
     def translate(letter)
-      @first_rotor.translate(letter)
+      out = traverse_rotors(letter)
+      move_rotors
+
+      out
+    end
+
+    def mirror_translate(letter)
+      mirror_traverse_rotors(letter)
+    end
+
+    private
+
+    def move_rotors
       @first_rotor.rotate
+      @second_rotor.rotate if @first_rotor.completed_full_turn?
+      @third_rotor.rotate if @second_rotor.completed_full_turn?
+    end
+
+    def traverse_rotors(letter)
+      first_pass = @first_rotor.translate(letter)
+      second_pass = @second_rotor.translate(first_pass)
+
+      @third_rotor.translate(second_pass)
+    end
+
+    def mirror_traverse_rotors(letter)
+      first_pass = @third_rotor.mirror_translate(letter)
+      second_pass = @second_rotor.mirror_translate(first_pass)
+
+      @first_rotor.mirror_translate(second_pass)
     end
   end
 end
