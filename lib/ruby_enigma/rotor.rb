@@ -10,8 +10,11 @@ module RubyEnigma
     end
 
     def rotate
-      previous_values = @table.values
-      @table = ('a'..'z').zip(previous_values.rotate).to_h
+      @table = ('a'..'z').zip(target_table.rotate).to_h
+    end
+
+    def target_table
+      @table.values
     end
   end
 end
