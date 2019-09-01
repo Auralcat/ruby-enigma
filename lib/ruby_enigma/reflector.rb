@@ -1,3 +1,5 @@
+require 'ruby_enigma/scramblable'
+
 module RubyEnigma
   # The Reflector is a different component in regards to its hash table, since
   # it returns the same letter pairings. These are also given by a wiring.

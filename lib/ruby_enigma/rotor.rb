@@ -12,16 +12,17 @@ module RubyEnigma
       @base_wiring_table = wiring_string.split('')
     end
 
-    def rotate
+    def turn!
       @table = alphabet.zip(target_table.rotate).to_h
       @mirror_table = @base_wiring_table.zip(target_mirror_table.rotate).to_h
+      self
     end
 
     def completed_full_turn?
       target_table == @base_wiring_table
     end
 
-    def rotated_once?
+    def turned_once?
       target_table == @base_wiring_table.rotate
     end
 

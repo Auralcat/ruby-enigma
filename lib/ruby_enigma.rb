@@ -1,10 +1,18 @@
 require "ruby_enigma/version"
-require 'securerandom'
+require 'ruby_enigma/machine'
 
 module RubyEnigma
   def self.encrypt(message)
-    # We will keep the project like this for now. Obviously, it's still not
-    # done, but the tests pass.
-    SecureRandom.uuid
+    wiring_ii = 'ajdksiruxblhwtmcqgznpyfvoe'
+    wiring_iii = 'bdfhjlcprtxvznyeiwgakmusqo'
+    wiring_iv = 'esovpzjayquirhxlnftgkdcmwb'
+
+    machine = RubyEnigma::Machine.new(
+      first_rotor_wiring: wiring_ii,
+      second_rotor_wiring: wiring_iii,
+      third_rotor_wiring: wiring_iv
+    )
+
+    machine.process(message)
   end
 end
