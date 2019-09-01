@@ -6,9 +6,5 @@ module RubyEnigma
       @table[letter]
     end
 
-    def rotate
-      previous_values = @table.values
-      @table = ('a'..'z').zip(previous_values.rotate).to_h
-    end
   end
 end
