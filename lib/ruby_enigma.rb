@@ -1,4 +1,4 @@
-require "ruby_enigma/version"
+require 'ruby_enigma/version'
 require 'ruby_enigma/machine'
 
 module RubyEnigma

@@ -1,4 +1,4 @@
-require "spec_helper"
+require 'spec_helper'
 require 'ruby_enigma/plugboard'
 
 RSpec.describe RubyEnigma::Plugboard do

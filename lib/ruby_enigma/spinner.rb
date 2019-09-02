@@ -22,13 +22,13 @@ module RubyEnigma
       mirror_traverse_rotors(letter)
     end
 
-    private
-
     def move_rotors!
       @first_rotor.turn!
       @second_rotor.turn! if @first_rotor.completed_full_turn?
       @third_rotor.turn! if @second_rotor.completed_full_turn?
     end
+
+    private
 
     def traverse_rotors(letter)
       first_pass = @first_rotor.translate(letter)

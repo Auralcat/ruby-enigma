@@ -48,6 +48,6 @@ RSpec.describe RubyEnigma::Spinner do
   end
 
   it 'directs the bounced signal correctly through the rotors' do
-    expect(spinner.mirror_translate('a')).to eq('c')
+    expect(spinner.mirror_translate('f')).to eq('a')
   end
 end

@@ -27,25 +27,15 @@ module RubyEnigma
 
     private
 
-    def incoming_path(letter)
+    def traverse(letter)
       first_pass = @plugboard.translate(letter)
       second_pass = @spinner.translate(first_pass)
 
-      second_pass
-    end
-
-    def bounced_path(letter)
-      bounced_pass = @reflector.translate(letter)
+      bounced_pass = @reflector.translate(second_pass)
       second_pass = @spinner.mirror_translate(bounced_pass)
       out = @plugboard.mirror_translate(second_pass)
 
       out
-    end
-
-    def traverse(letter)
-      incoming_letter = incoming_path(letter)
-
-      bounced_path(incoming_letter)
     end
   end
 end

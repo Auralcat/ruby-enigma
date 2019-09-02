@@ -1,5 +1,5 @@
-require "spec_helper"
-require "ruby_enigma/scramblable"
+require 'spec_helper'
+require 'ruby_enigma/scramblable'
 
 class DummyComponent
   include RubyEnigma::Scramblable
