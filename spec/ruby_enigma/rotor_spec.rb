@@ -24,20 +24,13 @@ RSpec.describe RubyEnigma::Rotor do
 
       expect(rotor.completed_full_turn?).to eq(true)
     end
-  end
 
-  describe '#turned_once?' do
-    it 'returns true when the rotor has changed positions once' do
-      rotor.turn!
-
-      expect(rotor.turned_once?).to eq(true)
-
-      rotor.turn!
-      expect(rotor.turned_once?).to eq(false)
+    it 'returns false if the rotor has not been turned yet' do
+      expect(rotor.completed_full_turn?).to eq(false)
     end
   end
 
-  describe '#rotate' do
+  describe '#turn!' do
     it 'changes the internal table by one step' do
       rotor.turn!
 

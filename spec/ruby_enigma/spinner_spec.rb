@@ -16,34 +16,31 @@ RSpec.describe RubyEnigma::Spinner do
     )
   end
 
-  it 'spins the first rotor when a letter is typed' do
-    spinner.translate('a')
-
-    expect(spinner.first_rotor.turned_once?).to eq(true)
-  end
-
   it 'spins the rotor only once during a single traversion' do
-    expect(spinner.first_rotor).to receive(:rotate).twice
-    expect(spinner.second_rotor).to_not receive(:rotate)
-    expect(spinner.third_rotor).to_not receive(:rotate)
+    expect(spinner.first_rotor).to receive(:turn!).once
+    expect(spinner.second_rotor).to_not receive(:turn!)
+    expect(spinner.third_rotor).to_not receive(:turn!)
 
-    2.times { spinner.translate('a') }
+    spinner.translate('a')
   end
 
 
   it 'spins the second rotor when the first one has completed a full turn' do
+    expect(spinner.second_rotor).to receive(:turn!).once
+    expect(spinner.third_rotor).to_not receive(:turn!)
+
     26.times { spinner.translate('a') }
 
     expect(spinner.first_rotor.completed_full_turn?).to eq(true)
-    expect(spinner.second_rotor.turned_once?).to eq(true)
   end
 
   it 'spins the third rotor when the second one has completed a full turn' do
-    677.times { spinner.translate('a') }
+    expect(spinner.third_rotor).to receive(:turn!).once
 
-    expect(spinner.first_rotor.completed_full_turn?).to eq(true)
+    676.times { spinner.translate('a') }
+
     expect(spinner.second_rotor.completed_full_turn?).to eq(true)
-    expect(spinner.third_rotor.turned_once?).to eq(true)
+    expect(spinner.first_rotor.completed_full_turn?).to eq(true)
   end
 
   it 'scrambles the letter through all rotors inside' do

@@ -18,7 +18,7 @@ module RubyEnigma
     def process(text)
       out = ''
 
-      text.gsub(/[ !.?|<>]/, '').split('').each do |letter|
+      text.gsub(/[ !.?|<>]/, '').downcase.split('').each do |letter|
         out += traverse(letter)
       end
 

@@ -10,20 +10,17 @@ module RubyEnigma
       @table = alphabet.zip(wiring_string.split('')).to_h
       @mirror_table = (wiring_string.split('')).zip(alphabet).to_h
       @base_wiring_table = wiring_string.split('')
+      @modified = false
     end
 
     def turn!
       @table = alphabet.zip(target_table.rotate).to_h
       @mirror_table = @base_wiring_table.zip(target_mirror_table.rotate).to_h
-      self
+      @modified = true
     end
 
     def completed_full_turn?
-      target_table == @base_wiring_table
-    end
-
-    def turned_once?
-      target_table == @base_wiring_table.rotate
+      (target_table == @base_wiring_table) && @modified
     end
 
     private
